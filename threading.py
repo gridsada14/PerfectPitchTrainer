@@ -1,7 +1,17 @@
-import threading
+from threading import Thread 
 
-def thread_callback():
-    print("Hello inside Thread")
+class Counter(Thread):
 
-thr = threading.Thread(target=thread_callback())
-thr.start()
+    def __init__(self, end):
+        Thread.__init__(self)
+        self.end = end
+
+    def run(self):
+        for i in range(1, self.end + 1):
+            print(self.name + ": " + str(i))
+
+thr1 = Counter(5)
+thr2 = Counter(5)
+
+thr1.start()
+thr2.start()
